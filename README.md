@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/js-republic/ReDoc.png?label=ready&title=Ready)](https://waffle.io/js-republic/ReDoc)
 SGR Project
 ===========
 
