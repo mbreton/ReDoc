@@ -1,4 +1,4 @@
-SGR Project [![License: GPL v3](https://img.shields.io/badge/license-GPL--V3-blue.svg)](https://www.gnu.org/licenses/quick-guide-gplv3.fr.html) [![Stories in Ready](https://badge.waffle.io/js-republic/ReDoc.png?label=ready&title=Ready)](https://waffle.io/js-republic/ReDoc) [![Travis CI status](https://travis-ci.org/js-republic/Redoc.svg?branch=master)](https://travis-ci.org/js-republic/SGR)
+SGR Project [![License: GPL v3](https://img.shields.io/badge/license-GPL--V3-blue.svg)](https://www.gnu.org/licenses/quick-guide-gplv3.fr.html) [![Stories in Ready](https://badge.waffle.io/js-republic/ReDoc.png?label=ready&title=Ready)](https://waffle.io/js-republic/ReDoc) [![Travis CI status](https://travis-ci.org/js-republic/Redoc.svg?branch=master)](https://travis-ci.org/js-republic/Redoc)
 ===========
 
 :rocket: :construction: Project in construction :construction::rocket:
