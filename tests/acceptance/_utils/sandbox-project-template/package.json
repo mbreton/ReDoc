@@ -1,0 +1,10 @@
+{
+  "name": "sandbox-project",
+  "version": "0.0.0",
+  "description": "This project is only for test purpose",
+  "repository": {
+    "type": "git",
+    "url": "git+https://sandbox/project.git"
+  },
+  "license":"UNLICENSED"
+}

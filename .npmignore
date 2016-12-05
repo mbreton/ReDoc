@@ -1,0 +1,6 @@
+.travis.yml
+tests
+.idea
+*.iml
+.npmrc
+.gitignore
