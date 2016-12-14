@@ -1,10 +1,10 @@
 {
-  "name": "sgr",
+  "name": "redoc",
   "version": "0.0.1",
   "description": "This project aims to build automaticaly a showcase based component like Reactjs, Angular 2 or Polymer",
   "main": "src/index.js",
   "bin": {
-    "sgr": "src/sgr.js"
+    "redoc": "src/redoc.js"
   },
   "scripts": {
     "pretest": "npm run lint",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/js-republic/SGR.git"
+    "url": "git+https://github.com/js-republic/ReDoc.git"
   },
   "keywords": [
     "Documentation",
@@ -34,9 +34,9 @@
   ],
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/js-republic/SGR/issues"
+    "url": "https://github.com/js-republic/ReDoc/issues"
   },
-  "homepage": "https://github.com/js-republic/SGR#readme",
+  "homepage": "https://github.com/js-republic/ReDoc#readme",
   "dependencies": {
     "chalk": "1.1.3",
     "commander": "2.9.0",

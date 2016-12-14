@@ -1,12 +1,12 @@
-SGR Contributions guide
+ReDoc Contributions guide
 =======================
 
-This doc explains the rules and guide lines to contribute on SGR project.
+This doc explains the rules and guide lines to contribute on ReDoc project.
 
 Prerequisites
 -------------
 
-To be able to contribute on SGR project, you will need :
+To be able to contribute on ReDoc project, you will need :
 
 - NodeJS (v6.0)
 - Yarn (installed in global): We prefer to use Yarn over NPM to manage our dependencies
@@ -18,21 +18,19 @@ So, you are a new comer and you would like to know how to contribute to this pro
 
 You are in the good place !
 
-The first thing to help us on SGR project, it's to find a issue on the [project view](https://github.com/js-republic/SGR/projects/1) on github.
+The first thing to help us on ReDoc project, it's to find a issue on the [project view](https://github.com/js-republic/ReDoc/projects/1) on github.
 
 Prefer take an issue not yet in the *Work in progress*. Each issue, except bugs, are attached to an 'parent' issue called an *Epic* that described all the feature.
 
 How the project view works
 --------------------------
 
-In the [project view](https://github.com/js-republic/SGR/projects/1), you can see four columns : *Ideation* -> *Todos* -> *Work in progress* -> *Done*
+In [waffle.io](https://waffle.io/js-republic/ReDoc), you can see four columns : *Backlog* -> *Todos* -> *Work in progress* -> *Done*
 
-- *Ideation* : Is the step where Epics are debated. The Epic come from the core team or are voted on [Feathub](http://feathub.com/js-republic/SGR).
-An Epic will list all stories attached to him.
-- *Todos* : In this step, the epics, and the stories a defined and wait for contributor (maybe you :tada:). 
-If someone wants work on a story, it can add a comment on it and core team will pass the story in next column.
-- *Work in progress* : Contains all stories currently developed. To be done, each story must be implemented in a pull-request, have well designed commit history, covered by unit tests and finally submit and reviewed by the core commiter team.
-- *Done* : The final step, this column contains all finished stories
+- *Backlog* : Is the step where issue are debated. The issue come from the core team or are voted on [Feathub](http://feathub.com/js-republic/ReDoc).
+- *Todos* : In this step, the issues are defined and wait for contributor (maybe you :tada:). 
+- *Work in progress* : Contains all issue currently developed. To be done, each issue must be implemented in a pull-request, have well designed commit history, covered by unit tests and finally submit and reviewed by the core commiter team.
+- *Done* : The final step, this column contains all finished issues
 
 Coding rules
 ------------

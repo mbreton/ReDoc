@@ -16,7 +16,7 @@ winston.loggers.add('internal', {
     level: 'debug',
     colorize: true,
     timestamp: true,
-    label: 'sgr',
+    label: 'redoc',
   },
 });
 

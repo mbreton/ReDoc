@@ -6,7 +6,7 @@ import { ncp } from 'ncp';
 
 import loggers from '../../../src/logger';
 
-const logger = loggers.get('sgr');
+const logger = loggers.get('redoc');
 
 ncp.limit = 16;
 
@@ -19,7 +19,7 @@ const execSyncIn = command => execSync(command, IN_SANDBOX_OPT).toString();
 const spawnIn = (command, options) => spawn(command, options, IN_SANDBOX_OPT);
 
 const init = (answers) => {
-  const initProcess = spawnIn('sgr', ['init']);
+  const initProcess = spawnIn('redoc', ['init']);
   let idx = 0;
   initProcess.stdout.on('data', () => initProcess.stdin.write(`${answers[idx++]}\n`));
   return initProcess;

@@ -10,13 +10,13 @@ test.after.always(() => {
 });
 
 test('should display help by default', (t) => {
-  t.regex(sandbox.execSyncIn('sgr'), /Usage: sgr \[options] \[command]/im);
+  t.regex(sandbox.execSyncIn('redoc'), /Usage: redoc \[options] \[command]/im);
 });
 
 test('should display help when call cli with --help', (t) => {
-  t.regex(sandbox.execSyncIn('sgr --help'), /Usage: sgr \[options] \[command]/im);
+  t.regex(sandbox.execSyncIn('redoc --help'), /Usage: redoc \[options] \[command]/im);
 });
 
 test('should return a correct version number', (t) => {
-  t.regex(sandbox.execSyncIn('sgr --version'), /\d\.\d\.\d/);
+  t.regex(sandbox.execSyncIn('redoc --version'), /\d\.\d\.\d/);
 });

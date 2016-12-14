@@ -17,7 +17,7 @@ program
   .command('run')
   .description('generate the documentation')
   .action(() => {
-    throw new Error('Not yet implemented')
+    throw new Error('Not yet implemented');
   });
 
 program.parse(process.argv);

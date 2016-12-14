@@ -6,6 +6,8 @@ const path = require('path');
 const logger = require('../logger').get('cli');
 const Configuration = require('../models/configuration');
 
+const CONFIG_PROP_NAME = 'redocConfig';
+
 // Inquirer questions
 const questions = [
   {
@@ -54,12 +56,12 @@ const questions = [
 function updatePackageJSON(conf) {
   const packageToUpdatePath = path.join(process.cwd(), 'package.json');
   const packageToUpdate = JSON.parse(fs.readFileSync(packageToUpdatePath));
-  packageToUpdate.sgrConfig = conf;
+  packageToUpdate[CONFIG_PROP_NAME] = conf;
   fs.writeFileSync(packageToUpdatePath, JSON.stringify(packageToUpdate, null, '  '));
 }
 
 /**
- * entry point for `sgr init`
+ * entry point for `redoc init`
  */
 function init() {
   return inquirer.prompt(questions).then((answers) => {
@@ -76,7 +78,7 @@ function init() {
     logger.info(`
       ${chalk.green('✨ Congratulations!')}
       The configuration is located in your ${chalk.bold('package.json')}.
-      You can now run ${chalk.bold('sgr run')} to scan your project.
+      You can now run ${chalk.bold('redoc run')} to scan your project.
     `);
   });
 }
