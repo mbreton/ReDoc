@@ -26,7 +26,7 @@ const questions = [
     type: 'input',
     name: 'patternToIgnore',
     message: 'Pattern to ignore (glob): ',
-    default: './node_modules/*',
+    default: './node_modules/**/*',
   },
   {
     type: 'list',
