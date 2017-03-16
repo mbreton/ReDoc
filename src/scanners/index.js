@@ -1,7 +1,7 @@
-function scanFilesFactory({ glob, redocConfig, scanners }) {
+function scanFilesFactory({ glob, redocConfig, scannerTypes }) {
   return function scanFiles() {
-    if (redocConfig.type in scanners) {
-      const scanner = scanners[redocConfig.type];
+    if (redocConfig.type in scannerTypes) {
+      const scanner = scannerTypes[redocConfig.type];
       return glob(redocConfig.inputDir, { ignore: redocConfig.ignore })
         .then(scanner.scan.bind(scanner));
     }
@@ -10,15 +10,11 @@ function scanFilesFactory({ glob, redocConfig, scanners }) {
 }
 
 const utils = require('../utils');
-const reactScanner = require('./react-scanner');
 const Promise = require('bluebird');
+const scannerTypes = require('./types');
 const glob = Promise.promisify(require('glob'));
 
-const scanners = {
-  React: reactScanner,
-};
 const redocConfig = utils.getRedocConfig();
 
-module.exports = scanFilesFactory({ glob, redocConfig, scanners });
-module.exports.scanners = scanners;
+module.exports = scanFilesFactory({ glob, redocConfig, scannerTypes });
 module.exports.factory = scanFilesFactory;

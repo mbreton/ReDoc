@@ -4,11 +4,9 @@ const fs = require('fs');
 const path = require('path');
 
 const logger = require('../logger').cli;
-const scanners = require('../scanners');
+const scannerTypes = Object.keys(require('../scanners/types'));
 const Configuration = require('../models/configuration').Configuration;
 const CONFIG_PROP_NAME = require('../models/configuration').CONFIG_PROP_NAME;
-
-const scannerTypes = Object.keys(scanners);
 
 // Inquirer questions
 const questions = [
