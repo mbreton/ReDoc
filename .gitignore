@@ -21,3 +21,5 @@ node_modules
 
 # macOS stuffs
 .DS_Store
+
+simple-react

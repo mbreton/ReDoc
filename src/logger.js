@@ -16,8 +16,20 @@ winston.loggers.add('internal', {
     level: 'debug',
     colorize: true,
     timestamp: true,
-    label: 'redoc',
+    label: 'ReDoc',
   },
 });
 
-module.exports = winston.loggers;
+winston.loggers.add('test', {
+  console: {
+    level: 'debug',
+    colorize: true,
+    timestamp: true,
+  },
+});
+
+module.exports = {
+  cli: winston.loggers.get('cli'),
+  internal: winston.loggers.get('internal'),
+  test: winston.loggers.get('test'),
+};

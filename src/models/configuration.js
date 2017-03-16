@@ -8,4 +8,6 @@ class Configuration {
   }
 }
 
-module.exports = Configuration;
+const CONFIG_PROP_NAME = 'redocConfig';
+
+module.exports = { Configuration, CONFIG_PROP_NAME };

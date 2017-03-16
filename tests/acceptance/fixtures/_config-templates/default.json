@@ -1,0 +1,7 @@
+{
+  "inputDir": "./**/{*.js,*.jsx}",
+  "outputDir": "./component-docs",
+  "ignore": "./node_modules/**/*",
+  "type": "React",
+  "additionalCssFile": ""
+}

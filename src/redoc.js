@@ -3,6 +3,7 @@
 const program = require('commander');
 const packageJson = require('../package.json');
 const init = require('./cli/init');
+const run = require('./cli/run');
 
 program
   .description('Component showcase generator')
@@ -16,12 +17,10 @@ program
 program
   .command('run')
   .description('generate the documentation')
-  .action(() => {
-    throw new Error('Not yet implemented');
-  });
+  .action(run);
 
 program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
-  program.help();
+  run();
 }

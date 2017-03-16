@@ -1,16 +1,16 @@
 import test from 'ava';
-import * as sandbox from '../_utils/sandbox';
+import Sandbox from '../fixtures/sandbox';
 
-test.before.cb((t) => {
-  sandbox.setup(t.end);
+let sandbox;
+
+test.before(() => {
+  sandbox = new Sandbox()
+    .withTemplate()
+    .withConfig();
 });
 
 test.after.always(() => {
   sandbox.destroy();
-});
-
-test('should display help by default', (t) => {
-  t.regex(sandbox.execSyncIn('redoc'), /Usage: redoc \[options] \[command]/im);
 });
 
 test('should display help when call cli with --help', (t) => {

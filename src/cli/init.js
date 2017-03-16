@@ -3,18 +3,20 @@ const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
 
-const logger = require('../logger').get('cli');
-const Configuration = require('../models/configuration');
+const logger = require('../logger').cli;
+const scanners = require('../scanners');
+const Configuration = require('../models/configuration').Configuration;
+const CONFIG_PROP_NAME = require('../models/configuration').CONFIG_PROP_NAME;
 
-const CONFIG_PROP_NAME = 'redocConfig';
+const scannerTypes = Object.keys(scanners);
 
 // Inquirer questions
 const questions = [
   {
     type: 'input',
     name: 'inputDir',
-    message: 'Project directory: ',
-    default: './',
+    message: 'Project directory (glob): ',
+    default: './**/{*.js,*.jsx}',
   },
   {
     type: 'input',
@@ -25,21 +27,15 @@ const questions = [
   {
     type: 'input',
     name: 'patternToIgnore',
-    message: 'Pattern to ignore: ',
+    message: 'Pattern to ignore (glob): ',
     default: './node_modules/*',
   },
   {
-    type: 'checkbox',
-    name: 'componentTypes',
+    type: 'list',
+    name: 'componentType',
     message: 'Kind of component: ',
-    choices: ['react', 'angular2', 'vuejs', 'polymer'],
-    default: ['react'],
-    validate: (answer) => {
-      if (answer.length < 1) {
-        return 'You must at least choose one';
-      }
-      return true;
-    },
+    choices: scannerTypes,
+    default: [scannerTypes[0]],
   },
   {
     type: 'input',
@@ -69,7 +65,7 @@ function init() {
       answers.inputDir,
       answers.outputDir,
       answers.patternToIgnore,
-      answers.componentTypes,
+      answers.componentType,
       answers.cssPath // eslint-disable-line
     );
 
