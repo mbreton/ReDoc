@@ -13,7 +13,7 @@ winston.loggers.add('cli', {
 
 winston.loggers.add('internal', {
   console: {
-    level: 'debug',
+    level: 'info',
     colorize: true,
     timestamp: true,
     label: 'ReDoc',

@@ -21,7 +21,7 @@ class ReactScanner {
       this.logger.debug(`File ${path} parsed successfully`);
       return fileParsingResults.concat(fileParsingResult);
     } catch (e) {
-      this.logger.info(`Couldn't parse ${path}`);
+      this.logger.debug(`Couldn't parse ${path}`);
       this.logger.debug(e);
       return fileParsingResults;
     }

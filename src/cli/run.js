@@ -7,11 +7,11 @@ function run() {
     .then((scanResults) => {
       scanResults.forEach((scanResult) => {
         const json = JSON.stringify(scanResult);
-        logger.debug(json);
+        logger.info(json);
       });
       return theme.render(scanResults);
     })
-    .then(() => logger.debug('Scan completed'))
+    .then(() => logger.info('Scan completed'))
     .catch(e => logger.error('Scan failed !', e));
 }
 
