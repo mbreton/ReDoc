@@ -1,28 +1,26 @@
-import test from 'ava';
-import sinon from 'sinon';
+const sinon = require('sinon');
+const ReactScanner = require('../../../src/scanners/react-scanner').Scanner;
 
-import { Scanner as ReactScanner } from '../../../src/scanners/react-scanner';
+describe('ReactScanner', () => {
+  test('should parse foo.jsx and quix.js files', () => {
+    // given
+    const parse = sinon.stub().returns('');
+    const readFileSync = sinon.stub();
+    readFileSync.withArgs('./foo.jsx').returns('fooContent');
+    readFileSync.withArgs('./qix.js').returns('qixContent');
+    const scanner = new ReactScanner({
+      reactDocs: { parse },
+      fs: { readFileSync },
+      logger: { debug() { }, info() { } },
+    });
 
-test.cb('should parse foo.jsx and quix.js files', (t) => {
-  // given
-  const parse = sinon.stub().returns('');
-  const readFileSync = sinon.stub();
-  readFileSync.withArgs('./foo.jsx').returns('fooContent');
-  readFileSync.withArgs('./qix.js').returns('qixContent');
-  const scanner = new ReactScanner({
-    reactDocs: { parse },
-    fs: { readFileSync },
-    logger: { debug() {}, info() {} },
+    // when
+    scanner.scan(['./foo.jsx', './qix.js']);
+
+    // then
+    expect(readFileSync.calledTwice).toBeTruthy();
+    expect(parse.calledTwice).toBeTruthy();
+    expect(parse.calledWithExactly('fooContent')).toBeTruthy();
+    expect(parse.calledWithExactly('qixContent')).toBeTruthy();
   });
-
-  // when
-  scanner.scan(['./foo.jsx', './qix.js']);
-
-  // then
-  t.is(readFileSync.calledTwice, true);
-  t.is(parse.calledTwice, true);
-  t.is(parse.calledWithExactly('fooContent'), true);
-  t.is(parse.calledWithExactly('qixContent'), true);
-  t.end();
 });
-

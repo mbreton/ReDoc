@@ -8,9 +8,9 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "test": "npm run test:unit && npm run test:acceptance",
-    "test:unit": "ava tests/unit/**/*.test.js --fail-fast",
-    "test:acceptance": "ava tests/acceptance/suites/**/*.test.js --fail-fast",
+    "test": "yarn test:unit && yarn test:acceptance",
+    "test:unit": "jest tests/unit/**/*.test.js --coverage",
+    "test:acceptance": "jest tests/acceptance/*.test.js",
     "lint": "eslint ./src"
   },
   "repository": {
@@ -50,28 +50,24 @@
     "winston": "2.3.0"
   },
   "devDependencies": {
-    "ava": "0.17.0",
     "babel-preset-es2015-node4": "2.1.0",
     "eslint": "3.10.2",
     "eslint-config-airbnb": "13.0.0",
-    "eslint-plugin-ava": "4.1.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.7.1",
+    "eslint-plugin-jest": "19.0.1",
+    "jest": "19.0.2",
     "react": "15.4.1",
     "rimraf": "2.5.4",
     "sinon": "1.17.7",
     "uuid": "3.0.1"
   },
-  "ava": {
-    "source": [
-      "src/**/*.js"
-    ],
-    "concurrency": 5,
-    "failFast": true,
-    "powerAssert": true,
-    "require": "babel-register",
-    "babel": "inherit"
+  "jest": {
+    "bail": true,
+    "collectCoverageFrom" : [
+      "src/**/*.{js,jsx}"
+    ]
   },
   "babel": {
     "presets": [
@@ -81,12 +77,13 @@
   "eslintConfig": {
     "extends": [
       "airbnb",
-      "plugin:ava/recommended"
+      "plugin:jest/recommended"
     ],
     "parser": "babel-eslint",
     "env": {
       "node": true,
-      "es6": true
+      "es6": true,
+      "jest/globals": true
     },
     "ecmaFeatures": {
       "ecmaVersion": 2017,
@@ -94,7 +91,7 @@
       "jsx": true
     },
     "plugins": [
-      "ava"
+      "jest"
     ],
     "rules": {
       "no-plusplus": 0,

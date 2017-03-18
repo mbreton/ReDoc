@@ -1,13 +1,12 @@
-import { execSync } from 'child_process';
-import path from 'path';
-import rimraf from 'rimraf';
-import fs from 'fs-extra';
-import uuid from 'uuid';
+const execSync = require('child_process').execSync;
+const path = require('path');
+const rimraf = require('rimraf');
+const fs = require('fs-extra');
+const uuid = require('uuid');
+const logger = require('../../../src/logger').test;
 
-import { test as logger } from '../../../src/logger';
 
-
-export default class Sandbox {
+module.exports = class Sandbox {
   constructor() {
     this.projectPath = path.join(__dirname, '_sandbox-projects', `${uuid()}`);
     this.cwdOption = { cwd: this.projectPath };
@@ -45,4 +44,4 @@ export default class Sandbox {
   destroy() {
     rimraf.sync(this.projectPath);
   }
-}
+};
