@@ -8,8 +8,8 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "test": "yarn test:unit && yarn test:acceptance",
-    "test:unit": "jest tests/unit/**/*.test.js --coverage",
+    "test": "yarn test:unit -- --coverage && yarn test:acceptance",
+    "test:unit": "jest tests/unit/**/*.test.js",
     "test:acceptance": "jest tests/acceptance/*.test.js",
     "lint": "eslint ./src"
   },
