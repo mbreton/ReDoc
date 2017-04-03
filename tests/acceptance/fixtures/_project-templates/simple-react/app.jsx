@@ -1,16 +1,22 @@
+// @flow
 import React, { Component } from 'react';
+
+
+type State = {
+  prop1: number
+};
+
+type Props = {
+  prop1?: number
+};
 
 /**
  * A super component !
  */
 class App extends Component {
 
-  static propTypes = {
-    /**
-     * This property is mandatory
-     */
-    prop1: React.PropTypes.number.isRequired,
-  };
+  state: State;
+  props: Props;
 
   contructor() {
     this.state = {

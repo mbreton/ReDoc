@@ -1,18 +1,19 @@
-const sinon = require('sinon');
-const ReactScanner = require('../../../src/scanners/react-scanner').Scanner;
+import sinon from 'sinon';
+import _fs from 'fs-extra';
+import * as reactDocgen from 'react-docgen';
+import { internal as logger } from '../../../src/logger';
+import reactScanner from '../../../src/scanners/react-scanner';
 
 describe('ReactScanner', () => {
   test('should parse foo.jsx and quix.js files', () => {
     // given
-    const parse = sinon.stub().returns('');
-    const readFileSync = sinon.stub();
+    const parse = sinon.stub(reactDocgen, 'parse').returns('');
+    sinon.stub(logger, 'debug');
+    sinon.stub(logger, 'info');
+    const readFileSync = sinon.stub(_fs, 'readFileSync');
     readFileSync.withArgs('./foo.jsx').returns('fooContent');
     readFileSync.withArgs('./qix.js').returns('qixContent');
-    const scanner = new ReactScanner({
-      reactDocs: { parse },
-      fs: { readFileSync },
-      logger: { debug() { }, info() { } },
-    });
+    const scanner = reactScanner;
 
     // when
     scanner.scan(['./foo.jsx', './qix.js']);

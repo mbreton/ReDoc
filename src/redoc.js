@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-
-const program = require('commander');
-const packageJson = require('../package.json');
-const init = require('./cli/init');
-const run = require('./cli/run');
+// @flow
+import program from 'commander';
+import packageJson from '../package.json';
+import init from './cli/init';
+import run from './cli/run';
 
 program
   .description('Component showcase generator')

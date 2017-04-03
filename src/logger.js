@@ -1,4 +1,4 @@
-const winston = require('winston');
+import winston from 'winston';
 
 winston.loggers.add('cli', {
   console: {
@@ -13,7 +13,7 @@ winston.loggers.add('cli', {
 
 winston.loggers.add('internal', {
   console: {
-    level: 'info',
+    level: 'debug',
     colorize: true,
     timestamp: true,
     label: 'ReDoc',
@@ -22,7 +22,7 @@ winston.loggers.add('internal', {
 
 winston.loggers.add('test', {
   console: {
-    level: 'debug',
+    level: 'silly',
     colorize: true,
     timestamp: true,
   },

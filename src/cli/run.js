@@ -1,8 +1,9 @@
-const logger = require('../logger').internal;
-const scan = require('../scanners');
-const theme = require('../themes/default');
+// @flow
+import { internal as logger } from '../logger';
+import scan from '../scanners';
+import theme from '../themes/default';
 
-function run() {
+export default function run() {
   scan()
     .then((scanResults) => {
       scanResults.forEach((scanResult) => {
@@ -14,5 +15,3 @@ function run() {
     .then(() => logger.info('Scan completed'))
     .catch(e => logger.error('Scan failed !', e));
 }
-
-module.exports = run;

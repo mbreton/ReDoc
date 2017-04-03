@@ -1,14 +1,14 @@
-const Sandbox = require('./fixtures/sandbox');
+// @flow
+import manager from './fixtures/sandbox-manager';
 
 describe('CLI', () => {
   let sandbox;
   beforeAll(() => {
-    sandbox = new Sandbox()
+    sandbox = manager
+      .createSandbox()
       .withTemplate()
       .withConfig();
   });
-
-  afterAll(() => sandbox.destroy());
 
   test('should display help when call cli with --help', () => {
     expect(sandbox.execSyncIn('redoc --help')).toMatch(/Usage: redoc \[options] \[command]/im);

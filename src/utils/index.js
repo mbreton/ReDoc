@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const CONFIG_PROP_NAME = require('../models/configuration').CONFIG_PROP_NAME;
+import fs from 'fs';
+import path from 'path';
+import { CONFIG_PROP_NAME } from '../models/configuration';
 
 function getRedocConfig() {
   const packageJsonPath = path.resolve(process.cwd(), 'package.json');

@@ -4,14 +4,19 @@
   "description": "This project aims to build automaticaly a showcase based component like Reactjs, Angular 2 or Polymer",
   "main": "src/index.js",
   "bin": {
-    "redoc": "src/redoc.js"
+    "redoc": "bin/redoc.js"
   },
   "scripts": {
-    "pretest": "npm run lint",
-    "test": "yarn test:unit -- --coverage && yarn test:acceptance",
-    "test:unit": "jest tests/unit/**/*.test.js",
-    "test:acceptance": "jest tests/acceptance/*.test.js",
-    "lint": "eslint ./src"
+    "start": "babel-node src/redoc.js",
+    "build": "mkdir -p bin && babel src -d bin -s",
+    "pretest": "yarn lint",
+    "test": "yarn test:unit && yarn test:acceptance",
+    "test:unit": "jest tests/unit",
+    "pretest:acceptance": "yarn build",
+    "test:acceptance": "jest tests/acceptance",
+    "lint": "eslint ./src",
+    "clean": "rm -rf bin",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "repository": {
     "type": "git",
@@ -28,9 +33,10 @@
   ],
   "author": "Mathieu Breton<mathieu.breton@js-republic.com>",
   "contributors": [
-    "Pierrick Turelier<pierrick.turelier@js-republic.com>",
+    "Romain Bertin<romain.bertin@js-republic.com",
+    "Mathieu Breton<mathieu.breton@js-republic.com>",
     "Vincent Cordobes<vincent.cordobes@js-republic.com>",
-    "Mathieu Breton<mathieu.breton@js-republic.com>"
+    "Pierrick Turelier<pierrick.turelier@js-republic.com>"
   ],
   "license": "GPL-3.0",
   "bugs": {
@@ -42,6 +48,7 @@
     "bluebird": "3.4.7",
     "chalk": "1.1.3",
     "commander": "2.9.0",
+    "flow-bin": "0.42.0",
     "fs-extra": "2.0.0",
     "glob": "7.1.1",
     "inquirer": "1.2.3",
@@ -50,34 +57,42 @@
     "winston": "2.3.0"
   },
   "devDependencies": {
-    "babel-preset-es2015-node4": "2.1.0",
+    "babel-cli": "6.24.0",
+    "babel-plugin-transform-class-properties": "6.23.0",
+    "babel-preset-env": "1.2.2",
+    "babel-preset-flow": "6.23.0",
     "eslint": "3.10.2",
     "eslint-config-airbnb": "13.0.0",
+    "eslint-plugin-flowtype": "2.30.3",
     "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jest": "19.0.1",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.7.1",
-    "eslint-plugin-jest": "19.0.1",
     "jest": "19.0.2",
-    "react": "15.4.1",
     "rimraf": "2.5.4",
     "sinon": "1.17.7",
     "uuid": "3.0.1"
   },
   "jest": {
     "bail": true,
-    "collectCoverageFrom" : [
+    "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ]
   },
   "babel": {
     "presets": [
-      "es2015-node4"
+      "env",
+      "flow"
+    ],
+    "plugins": [
+      "transform-class-properties"
     ]
   },
   "eslintConfig": {
     "extends": [
       "airbnb",
-      "plugin:jest/recommended"
+      "plugin:jest/recommended",
+      "plugin:flowtype/recommended"
     ],
     "parser": "babel-eslint",
     "env": {
@@ -91,11 +106,19 @@
       "jsx": true
     },
     "plugins": [
-      "jest"
+      "jest",
+      "flowtype"
     ],
     "rules": {
       "no-plusplus": 0,
       "no-shadow": 0
     }
+  },
+  "redocConfig": {
+    "inputDir": "tests/acceptance/fixtures/_project-templates/simple-react/*.jsx",
+    "outputDir": "./component-docs",
+    "ignore": "./node_modules/**/*",
+    "type": "React",
+    "additionalCssFile": ""
   }
 }

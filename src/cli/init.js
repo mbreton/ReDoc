@@ -1,12 +1,14 @@
-const inquirer = require('inquirer');
-const chalk = require('chalk');
-const fs = require('fs');
-const path = require('path');
+// @flow
+import inquirer from 'inquirer';
+import chalk from 'chalk';
+import fs from 'fs';
+import path from 'path';
 
-const logger = require('../logger').cli;
-const scannerTypes = Object.keys(require('../scanners/types'));
-const Configuration = require('../models/configuration').Configuration;
-const CONFIG_PROP_NAME = require('../models/configuration').CONFIG_PROP_NAME;
+import { internal as logger } from '../logger';
+import * as scannerDictionary from '../scanners/types';
+import { Configuration, CONFIG_PROP_NAME } from '../models/configuration';
+
+const scannerTypes = Object.keys(scannerDictionary);
 
 // Inquirer questions
 const questions = [
@@ -57,7 +59,7 @@ function updatePackageJSON(conf) {
 /**
  * entry point for `redoc init`
  */
-function init() {
+export default function init() {
   return inquirer.prompt(questions).then((answers) => {
     const conf = new Configuration(
       answers.inputDir,
@@ -76,6 +78,3 @@ function init() {
     `);
   });
 }
-
-
-module.exports = init;

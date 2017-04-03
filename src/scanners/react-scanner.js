@@ -1,40 +1,39 @@
-class ReactScanner {
-  constructor({ logger, reactDocs, fs }) {
-    this.reactDocs = reactDocs;
-    this.logger = logger;
-    this.fs = fs;
-  }
+// @flow
 
-  scan(filePaths) {
-    this.logger.info('React component scanning is in progress');
+import { parse } from 'react-docgen';
+import fs from 'fs-extra';
+import { internal as logger } from '../logger';
+
+type ScanResult = {
+    path: string,
+    content: any,
+}
+
+class ReactScanner {
+
+  scan = (filePaths: string[]) => {
+    logger.info('React component scanning is in progress');
     return filePaths
-        .map(this.getPathAndContent.bind(this))
-        .reduce(this.addParsedFile.bind(this), []);
-  }
-  getPathAndContent(path) {
-    this.logger.debug(`Found ${path}`);
-    return { path, content: this.fs.readFileSync(path) };
-  }
-  addParsedFile(fileParsingResults, { path, content }) {
+        .map(this.getPathAndContent)
+        .reduce(this.addParsedFile, []);
+  };
+
+  getPathAndContent = (path: string) => {
+    logger.debug(`Found ${path}`);
+    return { path, content: fs.readFileSync(path) };
+  };
+
+  addParsedFile = (fileParsingResults: ScanResult[], { path, content }: ScanResult) => {
     try {
-      const fileParsingResult = this.reactDocs.parse(content);
-      this.logger.debug(`File ${path} parsed successfully`);
+      const fileParsingResult = parse(content);
+      logger.debug(`File ${path} parsed successfully`);
       return fileParsingResults.concat(fileParsingResult);
     } catch (e) {
-      this.logger.debug(`Couldn't parse ${path}`);
-      this.logger.debug(e);
+      logger.debug(`Couldn't parse ${path}`);
+      logger.debug(e);
       return fileParsingResults;
     }
-  }
+  };
 }
 
-const reactDocs = require('react-docgen');
-const logger = require('../logger').internal;
-const fs = require('fs-extra');
-
-function ReactScannerFactory() {
-  return new ReactScanner({ logger, reactDocs, fs });
-}
-
-module.exports = ReactScannerFactory();
-module.exports.Scanner = ReactScanner;
+export default new ReactScanner();

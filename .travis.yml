@@ -4,3 +4,8 @@ node_js:
 install:
   - npm install yarn -g
   - yarn install
+notifications:
+  email:
+    - mathieu.breton@js-republic.com
+    - vincent.cordobes@js-republic.com
+    - romain.bertin@js-republic.com

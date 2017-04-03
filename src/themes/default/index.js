@@ -1,17 +1,12 @@
+// @flow
+import { internal as logger } from '../../logger';
+
+
 class DefaultTheme {
-  constructor({ logger }) {
-    this.logger = logger;
-  }
   render() {
-    this.logger.debug('Rendering docs ...');
+    logger.debug('Rendering docs ...');
   }
 }
 
-const logger = require('../../logger').internal;
+export default new DefaultTheme();
 
-function DefaultThemeFactory() {
-  return new DefaultTheme({ logger });
-}
-
-module.exports = DefaultThemeFactory();
-module.exports.Theme = DefaultTheme;

@@ -1,16 +1,11 @@
-const Sandbox = require('./fixtures/sandbox');
+// @flow
+import manager from './fixtures/sandbox-manager';
 
 describe('Run', () => {
-  let sandbox;
-  beforeAll(() => {
-    sandbox = new Sandbox()
+  beforeAll(() => manager
+      .createSandbox()
       .withTemplate()
-      .withConfig();
-  });
-
-  afterAll(() => {
-    sandbox.destroy();
-  });
+      .withConfig());
 
   test('should be ok', () => {
     expect(true).toBeTruthy();

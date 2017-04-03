@@ -1,4 +1,6 @@
-class Configuration {
+// @flow
+
+export class Configuration {
   constructor(inputDir, outputDir, ignore, type, additionalCssFile) {
     this.inputDir = inputDir;
     this.outputDir = outputDir;
@@ -8,6 +10,4 @@ class Configuration {
   }
 }
 
-const CONFIG_PROP_NAME = 'redocConfig';
-
-module.exports = { Configuration, CONFIG_PROP_NAME };
+export const CONFIG_PROP_NAME = 'redocConfig';
