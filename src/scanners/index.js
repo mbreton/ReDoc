@@ -2,11 +2,14 @@
 import Promise from 'bluebird';
 import glob from 'glob';
 import { getRedocConfig } from '../utils';
-import * as scannerTypes from './types';
+import type ComponentDescriptor from '../models/component-descriptor';
+import reactScanner from './react-scanner';
 
 const globPromise = Promise.promisify(glob);
 
-export default function scanFiles() {
+export const scannerTypes = { React: reactScanner };
+
+export function scanFiles(): Promise<ComponentDescriptor[]> {
   if (getRedocConfig().type in scannerTypes) {
     const scanner = scannerTypes[getRedocConfig().type];
     return globPromise(getRedocConfig().inputDir, { ignore: getRedocConfig().ignore })
@@ -14,4 +17,3 @@ export default function scanFiles() {
   }
   throw new Error(`There is no scanner of type : ${getRedocConfig().type}`);
 }
-

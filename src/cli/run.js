@@ -1,10 +1,10 @@
 // @flow
 import { internal as logger } from '../logger';
-import scan from '../scanners';
+import { scanFiles } from '../scanners';
 import theme from '../themes/default';
 
 export default function run() {
-  scan()
+  scanFiles()
     .then((scanResults) => {
       scanResults.forEach((scanResult) => {
         const json = JSON.stringify(scanResult);

@@ -2,11 +2,8 @@
 import { internal as logger } from '../../logger';
 
 
-class DefaultTheme {
+export default {
   render() {
     logger.debug('Rendering docs ...');
-  }
-}
-
-export default new DefaultTheme();
-
+  },
+};

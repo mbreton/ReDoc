@@ -5,10 +5,10 @@ import fs from 'fs';
 import path from 'path';
 
 import { internal as logger } from '../logger';
-import * as scannerDictionary from '../scanners/types';
+import { scannerTypes } from '../scanners';
 import { Configuration, CONFIG_PROP_NAME } from '../models/configuration';
 
-const scannerTypes = Object.keys(scannerDictionary);
+const scannerNames = Object.keys(scannerTypes);
 
 // Inquirer questions
 const questions = [
@@ -34,8 +34,8 @@ const questions = [
     type: 'list',
     name: 'componentType',
     message: 'Kind of component: ',
-    choices: scannerTypes,
-    default: [scannerTypes[0]],
+    choices: scannerNames,
+    default: [scannerNames[0]],
   },
   {
     type: 'input',
