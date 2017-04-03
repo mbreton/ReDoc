@@ -9,3 +9,11 @@ notifications:
     - mathieu.breton@js-republic.com
     - vincent.cordobes@js-republic.com
     - romain.bertin@js-republic.com
+
+addons:
+  code_climate:
+    repo_token: c820391ecd8fe9452c76b53de0a3e5068ad75849
+
+after_success:
+  - yarn global add codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info

@@ -10,7 +10,7 @@
     "start": "babel-node src/redoc.js",
     "build": "mkdir -p bin && babel src -d bin -s",
     "pretest": "yarn lint",
-    "test": "yarn test:unit && yarn test:acceptance",
+    "test": "yarn test:unit -- --coverage && yarn test:acceptance",
     "test:unit": "jest tests/unit",
     "pretest:acceptance": "yarn build",
     "test:acceptance": "jest tests/acceptance",
