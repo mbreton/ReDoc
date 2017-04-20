@@ -5,6 +5,11 @@ import fs from 'fs-extra';
 import type { ComponentDescriptor } from '../models/component-descriptor';
 import { internal as logger } from '../logger';
 
+type File = {
+  path: string,
+  content: string,
+};
+
 class ReactScanner {
 
   scan = (filePaths: string[]): ComponentDescriptor[] => {
@@ -19,7 +24,7 @@ class ReactScanner {
     return { path, content: fs.readFileSync(path) };
   };
 
-  addParsedFile = (fileParsingResults: ComponentDescriptor[], { path, content }) => {
+  addParsedFile = (fileParsingResults: ComponentDescriptor[], { path, content }: File) => {
     try {
       const componentDescriptor:ComponentDescriptor = Object.assign({
         name: path,

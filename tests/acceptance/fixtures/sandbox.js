@@ -8,13 +8,16 @@ import { test as logger } from '../../../src/logger';
 
 
 export default class Sandbox {
+  projectPath: string;
+  cwdOption: any;
+
   constructor() {
-    this.projectPath = path.join(__dirname, '_sandbox-projects', `${uuid()}`);
+    this.projectPath = path.join(__dirname, '_sandbox-projects', `${uuid.v4()}`);
     this.cwdOption = { cwd: this.projectPath };
     logger.log(`Creating project ${this.projectPath}`);
   }
 
-  withTemplate(projectTemplateName = 'simple-react') {
+  withTemplate(projectTemplateName: string = 'simple-react') {
     logger.log(`Copying template ${projectTemplateName}`);
     const templateProjectTemplatePath = path.join(__dirname, '_project-templates', projectTemplateName);
     try {
@@ -27,7 +30,7 @@ export default class Sandbox {
     return this;
   }
 
-  withConfig(configName = 'default') {
+  withConfig(configName: string = 'default') {
     logger.log(`Using config ${configName}`);
     const configPath = path.join(__dirname, '_config-templates', `${configName}.json`);
     const projectPackageJsonPath = path.join(this.projectPath, 'package.json');
@@ -38,7 +41,7 @@ export default class Sandbox {
     return this;
   }
 
-  execSyncIn(command) {
+  execSyncIn(command: string) {
     return execSync(command, this.cwdOption).toString();
   }
 

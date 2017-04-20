@@ -1,4 +1,3 @@
-// @flow
 
 export class Configuration {
   constructor(inputDir, outputDir, ignore, type, additionalCssFile) {

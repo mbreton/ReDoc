@@ -51,7 +51,7 @@ const questions = [
  */
 function updatePackageJSON(conf) {
   const packageToUpdatePath = path.join(process.cwd(), 'package.json');
-  const packageToUpdate = JSON.parse(fs.readFileSync(packageToUpdatePath));
+  const packageToUpdate = JSON.parse(fs.readFileSync(packageToUpdatePath).toString());
   packageToUpdate[CONFIG_PROP_NAME] = conf;
   fs.writeFileSync(packageToUpdatePath, JSON.stringify(packageToUpdate, null, '  '));
 }
