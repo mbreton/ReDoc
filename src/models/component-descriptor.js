@@ -1,3 +1,4 @@
+// @flow
 export type MethodDescriptor = {
   name: string,
   docblock: string,

@@ -2,7 +2,7 @@
 import Promise from 'bluebird';
 import glob from 'glob';
 import { getRedocConfig } from '../utils';
-import type ComponentDescriptor from '../models/component-descriptor';
+import type { ComponentDescriptor } from '../models/component-descriptor';
 import reactScanner from './react-scanner';
 
 const globPromise = Promise.promisify(glob);
